@@ -1,4 +1,3 @@
-Dame este documento estetico para presentar: # Guía de Instalación y Configuración - GEVOPI Esta guía proporciona instrucciones paso a paso para instalar y configurar el proyecto GEVOPI utilizando Docker. ## 📋 Requisitos Previos Antes de comenzar, asegúrate de tener instalado: - \*\*Docker\*\* (versión 20.10 o superior) - \*\*Docker Compose\*\* (versión 2.0 o superior) - \*\*Git\*\* (para clonar el repositorio) - Al menos \*\*2GB de RAM\*\* disponible para los contenedores - Puerto \*\*8085\*\* disponible para Laravel Reverb (WebSockets) ## 🚀 Instalación ### 1. Clonar el Repositorio
 
 bash
 
