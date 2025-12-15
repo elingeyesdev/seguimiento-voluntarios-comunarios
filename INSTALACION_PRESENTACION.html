@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Instalación - GEVOPI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero .version {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Content Card */
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.6rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .emoji-icon {
+            font-size: 2.5rem;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        li strong {
+            color: #333;
+        }
+        
+        /* Code Blocks */
+        pre {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        pre::before {
+            content: attr(data-lang);
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .inline-code {
+            background: #f0f0f0;
+            color: #e83e8c;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        /* Alert Boxes */
+        .alert {
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .alert-warning {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            border-left-color: #ffc107;
+            color: #856404;
+        }
+        
+        .alert-info {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left-color: #17a2b8;
+            color: #0c5460;
+        }
+        
+        .alert-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        /* Steps */
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 2px solid #dee2e6;
+        }
+        
+        .toc h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 8px;
+        }
+        
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .grid-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .grid-item h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        /* Footer */
+        .footer {
+            background: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .footer p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-card {
+                padding: 30px 20px;
+            }
+            
+            pre {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .content-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            
+            .hero {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>🚀 GEVOPI</h1>
+            <p>Guía de Instalación y Configuración con Docker</p>
+            <div class="version">Versión 1.0 - Diciembre 2024</div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="content-card toc">
+            <h3>📑 Tabla de Contenidos</h3>
+            <ul>
+                <li><a href="#requisitos">📋 Requisitos Previos</a></li>
+                <li><a href="#instalacion">🚀 Proceso de Instalación</a></li>
+                <li><a href="#verificacion">✅ Verificación de Instalación</a></li>
+                <li><a href="#comandos">🔧 Comandos Útiles</a></li>
+                <li><a href="#troubleshooting">🐛 Solución de Problemas</a></li>
+                <li><a href="#notas">📝 Notas Adicionales</a></li>
+            </ul>
+        </div>
+
+        <!-- Requisitos Previos -->
+        <div class="content-card" id="requisitos">
+            <h2><span class="emoji-icon">📋</span> Requisitos Previos</h2>
+            <p>Antes de comenzar, asegúrate de tener instalado:</p>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4>🐳 Docker</h4>
+                    <p>Versión 20.10 o superior</p>
+                </div>
+                <div class="grid-item">
+                    <h4>📦 Docker Compose</h4>
+                    <p>Versión 2.0 o superior</p>
+                </div>
+                <div class="grid-item">
+                    <h4>🔧 Git</h4>
+                    <p>Para clonar el repositorio</p>
+                </div>
+                <div class="grid-item">
+                    <h4>💾 RAM</h4>
+                    <p>Al menos 2GB disponibles</p>
+                </div>
+                <div class="grid-item">
+                    <h4>🔌 Puerto 8085</h4>
+                    <p>Para Laravel Reverb (WebSockets)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instalación -->
+        <div class="content-card" id="instalacion">
+            <h2><span class="emoji-icon">🚀</span> Proceso de Instalación</h2>
+            
+            <div class="section">
+                <h3><span class="step-number">1</span>Clonar el Repositorio</h3>
+                <pre data-lang="bash"><code>git clone &lt;URL_DEL_REPOSITORIO&gt;
+cd Crud_No_Transaccional</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">2</span>Configurar Variables de Entorno</h3>
+                <p>El proyecto incluye dos archivos de configuración:</p>
+                <ul>
+                    <li><span class="inline-code">.env</span> - Para desarrollo local</li>
+                    <li>Variables en <span class="inline-code">docker-compose.yml</span> - Para producción</li>
+                </ul>
+                
+                <h4>Para Desarrollo Local:</h4>
+                <pre data-lang="bash"><code>cp .env.example .env</code></pre>
+                
+                <h4>⚙️ Base de Datos</h4>
+                <pre data-lang="env"><code>DB_CONNECTION=pgsql
+DB_HOST=gevopi-db
+DB_PORT=5432
+DB_DATABASE=gevopi_db
+DB_USERNAME=admin
+DB_PASSWORD=admin123</code></pre>
+
+                <div class="alert alert-warning">
+                    <span class="alert-icon">⚠️</span>
+                    <div>
+                        <strong>Importante - Correo Electrónico (Gmail)</strong><br>
+                        Necesitas configurar una contraseña de aplicación de Gmail. No uses tu contraseña personal.
+                    </div>
+                </div>
+
+                <h4>📧 Configuración de Correo</h4>
+                <pre data-lang="env"><code>MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=tu_email@gmail.com
+MAIL_PASSWORD=tu_contraseña_de_aplicacion
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=tu_email@gmail.com</code></pre>
+
+                <h4>🔌 Laravel Reverb (WebSockets)</h4>
+                <pre data-lang="env"><code>REVERB_APP_ID=885889
+REVERB_APP_KEY=ljtplxexpbq7atbjzrzp
+REVERB_APP_SECRET=yy9plhe0c7ffjltaidfh
+REVERB_HOST=192.168.0.4  # Cambia por tu IP local o dominio
+REVERB_PORT=8080
+REVERB_SCHEME=http</code></pre>
+
+                <h4>🤖 Google Gemini API</h4>
+                <pre data-lang="env"><code>GOOGLE_GEMINI_API_KEY_CURSOS=tu_api_key
+GOOGLE_GEMINI_API_KEY_NECESIDADES=tu_api_key</code></pre>
+
+                <h4>🆘 API Helpdesk</h4>
+                <pre data-lang="env"><code>HELPDESK_API_URL=https://proyecto-de-ultimo-minuto.online
+HELPDESK_API_KEY=tu_api_key_aqui</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">3</span>Crear Redes Docker Externas</h3>
+                <p>El proyecto requiere dos redes externas. Créalas antes de iniciar los contenedores:</p>
+                <pre data-lang="bash"><code>docker network create internal-network
+docker network create proxy-network</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">4</span>Verificar el Dockerfile</h3>
+                <p>Asegúrate de tener un <span class="inline-code">Dockerfile</span> en la raíz del proyecto. Si no existe, créalo con el siguiente contenido:</p>
+                <pre data-lang="dockerfile"><code>FROM php:8.2-fpm
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    git curl libpng-dev libonig-dev libxml2-dev \
+    zip unzip libpq-dev nodejs npm
+
+# Limpiar cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Instalar extensiones de PHP
+RUN docker-php-ext-install pdo pdo_pgsql pgsql mbstring exif pcntl bcmath gd
+
+# Obtener Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Configurar directorio de trabajo
+WORKDIR /var/www
+
+# Copiar archivos del proyecto
+COPY . /var/www
+
+# Permisos
+RUN chown -R www-data:www-data /var/www
+RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
+# Exponer puerto 9000
+EXPOSE 9000
+
+CMD ["php-fpm"]</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">5</span>Crear el Archivo nginx.conf</h3>
+                <p>Crea el archivo <span class="inline-code">nginx.conf</span> en la raíz del proyecto:</p>
+                <pre data-lang="nginx"><code>server {
+    listen 80;
+    index index.php index.html;
+    root /var/www/public;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass laravel:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">6</span>Construir e Iniciar los Contenedores</h3>
+                <pre data-lang="bash"><code># Construir las imágenes
+docker-compose build
+
+# Iniciar todos los servicios
+docker-compose up -d</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">7</span>Instalar Dependencias de Laravel</h3>
+                <pre data-lang="bash"><code># Acceder al contenedor de Laravel
+docker exec -it gevopi-laravel bash
+
+# Dentro del contenedor:
+composer install
+
+# Si usas Node.js/NPM para assets
+npm install
+npm run build
+
+# Salir del contenedor
+exit</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">8</span>Generar Clave de Aplicación</h3>
+                <pre data-lang="bash"><code>docker exec -it gevopi-laravel php artisan key:generate</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">9</span>Ejecutar Migraciones</h3>
+                <pre data-lang="bash"><code># Ejecutar migraciones
+docker exec -it gevopi-laravel php artisan migrate
+
+# Si tienes seeders (opcional)
+docker exec -it gevopi-laravel php artisan db:seed</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">10</span>Configurar Permisos</h3>
+                <pre data-lang="bash"><code>docker exec -it gevopi-laravel bash
+chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+exit</code></pre>
+            </div>
+
+            <div class="section">
+                <h3><span class="step-number">11</span>Limpiar Cache</h3>
+                <pre data-lang="bash"><code>docker exec -it gevopi-laravel php artisan config:clear
+docker exec -it gevopi-laravel php artisan cache:clear
+docker exec -it gevopi-laravel php artisan view:clear
+docker exec -it gevopi-laravel php artisan route:clear</code></pre>
+            </div>
+        </div>
+
+        <!-- Verificación -->
+        <div class="content-card" id="verificacion">
+            <h2><span class="emoji-icon">✅</span> Verificación de la Instalación</h2>
+            
+            <div class="section">
+                <h3>1. Verificar que los Contenedores Estén Corriendo</h3>
+                <pre data-lang="bash"><code>docker-compose ps</code></pre>
+                <p>Deberías ver:</p>
+                <ul>
+                    <li>✅ <strong>gevopi-laravel</strong> - corriendo</li>
+                    <li>✅ <strong>gevopi</strong> (nginx) - corriendo</li>
+                    <li>✅ <strong>gevopi-reverb</strong> - corriendo</li>
+                    <li>✅ <strong>gevopi-db</strong> - corriendo</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>2. Verificar Logs</h3>
+                <pre data-lang="bash"><code># Logs de Laravel
+docker logs gevopi-laravel
+
+# Logs de Nginx
+docker logs gevopi
+
+# Logs de Reverb
+docker logs gevopi-reverb
+
+# Logs de PostgreSQL
+docker logs gevopi-db</code></pre>
+            </div>
+
+            <div class="section">
+                <h3>3. Acceder a la Aplicación</h3>
+                <div class="grid">
+                    <div class="grid-item">
+                        <h4>🌐 Aplicación Principal</h4>
+                        <p><a href="http://localhost" class="btn">http://localhost</a></p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>🔌 WebSockets (Reverb)</h4>
+                        <p><a href="http://localhost:8085" class="btn">http://localhost:8085</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>4. Verificar Conexión a la Base de Datos</h3>
+                <pre data-lang="bash"><code># Conectarse a PostgreSQL
+docker exec -it gevopi-db psql -U admin -d gevopi_db
+
+# Listar tablas
+\dt
+
+# Salir
+\q</code></pre>
+            </div>
+        </div>
+
+        <!-- Comandos Útiles -->
+        <div class="content-card" id="comandos">
+            <h2><span class="emoji-icon">🔧</span> Comandos Útiles</h2>
+            
+            <div class="grid">
+                <div class="grid-item">
+                    <h4>🛑 Detener Contenedores</h4>
+                    <pre data-lang="bash"><code>docker-compose down</code></pre>
+                </div>
+                <div class="grid-item">
+                    <h4>🔄 Reiniciar Servicios</h4>
+                    <pre data-lang="bash"><code>docker-compose restart</code></pre>
+                </div>
+                <div class="grid-item">
+                    <h4>📋 Ver Logs en Tiempo Real</h4>
+                    <pre data-lang="bash"><code>docker-compose logs -f</code></pre>
+                </div>
+                <div class="grid-item">
+                    <h4>🔨 Reconstruir Contenedores</h4>
+                    <pre data-lang="bash"><code>docker-compose down
+docker-compose build --no-cache
+docker-compose up -d</code></pre>
+                </div>
+                <div class="grid-item">
+                    <h4>🗄️ Acceder a la Base de Datos</h4>
+                    <pre data-lang="bash"><code>docker exec -it gevopi-db \
+  psql -U admin -d gevopi_db</code></pre>
+                </div>
+                <div class="grid-item">
+                    <h4>⚡ Ejecutar Comandos Artisan</h4>
+                    <pre data-lang="bash"><code>docker exec -it gevopi-laravel \
+  php artisan &lt;comando&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="content-card" id="troubleshooting">
+            <h2><span class="emoji-icon">🐛</span> Solución de Problemas Comunes</h2>
+            
+            <div class="section">
+                <h3>❌ Error: "Networks not found"</h3>
+                <pre data-lang="bash"><code>docker network create internal-network
+docker network create proxy-network</code></pre>
+            </div>
+
+            <div class="section">
+                <h3>⚠️ Error: "Port already in use"</h3>
+                <p>Verifica qué proceso está usando el puerto:</p>
+                <pre data-lang="powershell"><code># Windows PowerShell
+netstat -ano | findstr :8085
+
+# Detén el proceso o cambia el puerto en docker-compose.yml</code></pre>
+            </div>
+
+            <div class="section">
+                <h3>🔒 Error: "Permission denied" en storage</h3>
+                <pre data-lang="bash"><code>docker exec -it gevopi-laravel bash
+chmod -R 777 storage bootstrap/cache
+exit</code></pre>
+            </div>
+
+            <div class="section">
+                <h3>🚫 La aplicación no carga</h3>
+                <ol>
+                    <li>Verifica los logs: <span class="inline-code">docker logs gevopi-laravel</span></li>
+                    <li>Asegúrate de que todos los contenedores estén corriendo: <span class="inline-code">docker-compose ps</span></li>
+                    <li>Verifica la configuración de nginx: <span class="inline-code">docker exec -it gevopi nginx -t</span></li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h3>🔌 Problemas con Reverb/WebSockets</h3>
+                <ol>
+                    <li>Verifica que el puerto 8085 esté disponible</li>
+                    <li>Revisa los logs: <span class="inline-code">docker logs gevopi-reverb</span></li>
+                    <li>Verifica la configuración en <span class="inline-code">.env</span>:
+                        <ul>
+                            <li><span class="inline-code">REVERB_HOST</span> debe ser accesible desde el navegador</li>
+                            <li><span class="inline-code">REVERB_PORT</span> debe coincidir con el puerto mapeado (8085)</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Notas Adicionales -->
+        <div class="content-card" id="notas">
+            <h2><span class="emoji-icon">📝</span> Notas Adicionales</h2>
+            
+            <div class="section">
+                <h3>📧 Gmail SMTP</h3>
+                <p>Para usar Gmail como servidor SMTP:</p>
+                <ol>
+                    <li>Habilita la verificación en 2 pasos en tu cuenta de Google</li>
+                    <li>Genera una "Contraseña de aplicación" en: <a href="https://myaccount.google.com/apppasswords" target="_blank">https://myaccount.google.com/apppasswords</a></li>
+                    <li>Usa esa contraseña en <span class="inline-code">MAIL_PASSWORD</span></li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h3>🏭 Producción vs Desarrollo</h3>
+                <p>El <span class="inline-code">docker-compose.yml</span> está configurado para <strong>producción</strong> con:</p>
+                <ul>
+                    <li><span class="inline-code">APP_ENV=production</span></li>
+                    <li><span class="inline-code">APP_DEBUG=false</span></li>
+                </ul>
+                
+                <div class="alert alert-info">
+                    <span class="alert-icon">ℹ️</span>
+                    <div>
+                        <strong>Para desarrollo</strong>, modifica estas variables en el servicio <span class="inline-code">laravel</span>:<br>
+                        <code>APP_ENV: local</code><br>
+                        <code>APP_DEBUG: true</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>🤖 API Keys de Google Gemini</h3>
+                <ol>
+                    <li>Obtén tus API keys desde: <a href="https://makersuite.google.com/app/apikey" target="_blank">https://makersuite.google.com/app/apikey</a></li>
+                    <li>Configúralas en <span class="inline-code">.env</span>:
+                        <ul>
+                            <li><span class="inline-code">GOOGLE_GEMINI_API_KEY_CURSOS</span></li>
+                            <li><span class="inline-code">GOOGLE_GEMINI_API_KEY_NECESIDADES</span></li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h3>🔄 Proxy Reverso (Nginx Proxy Manager / Traefik)</h3>
+                <p>Si usas un proxy reverso en <span class="inline-code">proxy-network</span>, asegúrate de:</p>
+                <ol>
+                    <li>Configurar el dominio <span class="inline-code">gevopi.dasalas.shop</span></li>
+                    <li>Enrutar el tráfico al contenedor <span class="inline-code">gevopi</span> en el puerto 80</li>
+                    <li>Configurar SSL/TLS si es necesario</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h2>🆘 Soporte</h2>
+            <p>Si encuentras problemas:</p>
+            <ol style="text-align: left; max-width: 600px; margin: 20px auto;">
+                <li>Revisa los logs de los contenedores</li>
+                <li>Verifica que todas las variables de entorno estén configuradas</li>
+                <li>Asegúrate de que los puertos no estén en uso</li>
+                <li>Consulta la documentación de Laravel: <a href="https://laravel.com/docs" target="_blank">https://laravel.com/docs</a></li>
+            </ol>
+            <p style="margin-top: 40px; color: #999; font-size: 0.9rem;">
+                Última actualización: Diciembre 2024<br>
+                GEVOPI - Sistema de Gestión de Voluntariado
+            </p>
+        </div>
+    </div>
+</body>
+</html>
